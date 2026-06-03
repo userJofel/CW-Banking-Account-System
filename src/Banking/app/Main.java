@@ -15,61 +15,67 @@ class Main {
         int op;
         Conta contaAtual = null;
 
-        while (contaAtual == null) {
+        while (true) {
 
-            String nomeDaConta;
-            String senhaDaConta;
+            if (contaAtual == null) {
 
-            System.out.println("\n=== Banking Account ===\n" + "1 - Entra na conta\n" + "2 - Criar uma conta");
-            op = scanner.nextInt();
-            scanner.nextLine();
-            switch (op) {
-                case 1:
-                    System.out.print("Usuário: ");
-                    nomeDaConta = scanner.nextLine();
-                    System.out.print("Senha: ");
-                    senhaDaConta = scanner.next();
-                    contaAtual = service.entrarConta(nomeDaConta, senhaDaConta);
-                    break;
-                case 2:
-                    System.out.print("Usuário: ");
-                    nomeDaConta = scanner.nextLine();
-                    System.out.print("Senha: ");
-                    senhaDaConta = scanner.next();
-                    service.criarConta(nomeDaConta, senhaDaConta);
-                    break;
-                default:
-                    System.out.println("Opção inválida");
+                String nomeDaConta;
+                String senhaDaConta;
+
+                System.out.println("\n=== Banking Account ===\n" + "1 - Entra na conta\n" + "2 - Criar uma conta\n" + "3 - Sair do programa");
+                op = scanner.nextInt();
+                scanner.nextLine();
+                switch (op) {
+                    case 1:
+                        System.out.print("Usuário: ");
+                        nomeDaConta = scanner.nextLine();
+                        System.out.print("Senha: ");
+                        senhaDaConta = scanner.next();
+                        contaAtual = service.entrarConta(nomeDaConta, senhaDaConta);
+                        break;
+                    case 2:
+                        System.out.print("Usuário: ");
+                        nomeDaConta = scanner.nextLine();
+                        System.out.print("Senha: ");
+                        senhaDaConta = scanner.next();
+                        service.criarConta(nomeDaConta, senhaDaConta);
+                        break;
+                    case 3:
+                        System.out.println("Saindo");
+                        return;
+                    default:
+                        System.out.println("Opção inválida");
+                }
+            } else {
+                System.out.println("\n=== Banking Account ===\n" + "1 - Consultar saldo\n" + "2 - Depositar dinheiro\n" + "3 - Sacar dinheiro\n" + "4 - Encerrar sessão\n" + "Ação: ");
+                op = scanner.nextInt();
+                scanner.nextLine();
+
+                double deposito;
+                double sacar;
+
+                switch (op) {
+                    case 1:
+                        System.out.println("Saldo: R$" + contaAtual.getSaldo());
+                        break;
+                    case 2:
+                        System.out.print("Digite a quantidade que deseja depositar: ");
+                        deposito = scanner.nextDouble();
+                        contaAtual.depositar(deposito);
+                        break;
+                    case 3:
+                        System.out.print("Digite a quantidade que deseja sacar: ");
+                        sacar = scanner.nextDouble();
+                        contaAtual.sacar(sacar);
+                        break;
+                    case 4:
+                        System.out.println("Saindo...");
+                        contaAtual = null;
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
             }
         }
-
-        while (contaAtual != null) {
-            System.out.println("\n=== Banking Account ===\n" + "1 - Consultar saldo\n" + "2 - Depositar dinheiro\n" + "3 - Sacar dinheiro\n" + "4 - Encerrar sessão\n" + "Ação: ");
-            op = scanner.nextInt();
-            scanner.nextLine();
-
-            double deposito;
-            double sacar;
-
-            switch (op) {
-                case 1:
-                    System.out.println("Saldo: R$" + contaAtual.getSaldo());
-                    break;
-                case 2:
-                    System.out.print("Digite a quantidade que deseja depositar: ");
-                    deposito = scanner.nextDouble();
-                    contaAtual.depositar(deposito);
-                    break;
-                case 3:
-                    System.out.print("Digite a quantidade que deseja sacar: ");
-                    sacar = scanner.nextDouble();
-                    contaAtual.sacar(sacar);
-                    break;
-                case 4:
-                default:
-            }
-        }
-
-
     }
 }
