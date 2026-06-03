@@ -1,5 +1,7 @@
 package Banking.model;
 
+import java.util.ArrayList;
+
 public class Conta {
     private static int nextId = 1;
     private final int id;
@@ -7,6 +9,7 @@ public class Conta {
     private String senha;
     private double saldo;
     private int tentativas;
+    private ArrayList<Movimentacao> movimentacaos;
 
     public Conta(String nome, String senha) {
         this.id = nextId;
@@ -14,6 +17,7 @@ public class Conta {
         this.senha = senha;
         this.saldo = 0;
         this.tentativas = 3;
+        this.movimentacaos = new ArrayList<>();
         nextId++;
     }
 
@@ -41,6 +45,7 @@ public class Conta {
             return;
         }
         this.saldo += valor;
+        movimentacaos.add(new Movimentacao(Movimentacao.Tipo.DEPOSITO, valor));
     }
 
     public void sacar(double valor) {
@@ -50,5 +55,12 @@ public class Conta {
         }
 
         this.saldo -= valor;
+        movimentacaos.add(new Movimentacao(Movimentacao.Tipo.SAQUE, valor));
+    }
+
+    public void getMovimentacoes() {
+        for (Movimentacao movimentacao : movimentacaos) {
+            System.out.println(movimentacao);
+        }
     }
 }

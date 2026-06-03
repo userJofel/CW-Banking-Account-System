@@ -47,7 +47,7 @@ class Main {
                         System.out.println("Opção inválida");
                 }
             } else {
-                System.out.println("\n=== Banking Account ===\n" + "1 - Consultar saldo\n" + "2 - Depositar dinheiro\n" + "3 - Sacar dinheiro\n" + "4 - Encerrar sessão\n" + "Ação: ");
+                System.out.println("\n=== Banking Account ===\n" + "1 - Consultar saldo\n" + "2 - Depositar dinheiro\n" + "3 - Sacar dinheiro\n" + "4 - Historico de movimentação\n" + "5 - Encerrar sessão\n" + "Ação: ");
                 op = scanner.nextInt();
                 scanner.nextLine();
 
@@ -69,6 +69,9 @@ class Main {
                         contaAtual.sacar(sacar);
                         break;
                     case 4:
+                        contaAtual.getMovimentacoes();
+                        break;
+                    case 5:
                         System.out.println("Saindo...");
                         contaAtual = null;
                         break;
