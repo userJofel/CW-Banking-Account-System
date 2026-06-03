@@ -1,12 +1,10 @@
 package Banking.service;
 
 import Banking.model.Conta;
-
 import java.util.ArrayList;
 
-
 public class ContaService {
-
+    // @userJofel
     private final ArrayList<Conta> contas = new ArrayList<>();
 
     public void criarConta(String user, String password) {

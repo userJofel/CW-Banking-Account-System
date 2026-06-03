@@ -34,4 +34,12 @@ public class Conta {
     public double getSaldo() {
         return saldo;
     }
+
+    public void depositar(double valor) {
+        if (valor <= 0) {
+            System.out.println("Não é permitido depositar valores negativos!");
+            return;
+        }
+        this.saldo += valor;
+    }
 }

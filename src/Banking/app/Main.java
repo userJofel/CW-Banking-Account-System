@@ -58,7 +58,7 @@ class Main {
                 case 2:
                     System.out.print("Digite a quantidade que deseja depositar: ");
                     deposito = scanner.nextDouble();
-
+                    contaAtual.depositar(deposito);
                 case 3:
                 case 4:
                 default:
