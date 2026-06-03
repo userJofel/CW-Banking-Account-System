@@ -42,4 +42,13 @@ public class Conta {
         }
         this.saldo += valor;
     }
+
+    public void sacar(double valor) {
+        if (valor <= 0 || valor > this.saldo) {
+            System.out.println("Não é permitido sacar valores negativos ou mais do que você tem!");
+            return;
+        }
+
+        this.saldo -= valor;
+    }
 }

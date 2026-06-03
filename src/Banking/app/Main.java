@@ -59,7 +59,12 @@ class Main {
                     System.out.print("Digite a quantidade que deseja depositar: ");
                     deposito = scanner.nextDouble();
                     contaAtual.depositar(deposito);
+                    break;
                 case 3:
+                    System.out.print("Digite a quantidade que deseja sacar: ");
+                    sacar = scanner.nextDouble();
+                    contaAtual.sacar(sacar);
+                    break;
                 case 4:
                 default:
             }
