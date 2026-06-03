@@ -9,6 +9,7 @@ public class Conta {
     private String senha;
     private double saldo;
     private int tentativas;
+    private long proximoPodeAcessar;
     private ArrayList<Movimentacao> movimentacaos;
 
     public Conta(String nome, String senha) {
@@ -30,8 +31,25 @@ public class Conta {
     public int getTentativas() {return tentativas;}
 
     public void subTentativas() {
-        if (!(this.tentativas <= 0)) {
+        long agora = System.currentTimeMillis();
+
+        if (this.tentativas > 0) {
             this.tentativas--;
+
+            if (this.tentativas == 0) {
+                this.proximoPodeAcessar = agora + 1000 * 60 * 10;
+                System.out.println("Você foi bloqueado por 10 minutos.");
+            }
+
+        } else {
+            if (agora >= this.proximoPodeAcessar) {
+                this.tentativas = 3;
+                this.proximoPodeAcessar = 0;
+                System.out.println("Tentativas liberadas novamente.");
+            } else {
+                long tempoRestante = (this.proximoPodeAcessar - agora) / 1000;
+                System.out.println("Aguarde " + tempoRestante + " segundos para tentar novamente.");
+            }
         }
     }
 

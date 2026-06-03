@@ -39,6 +39,7 @@ public class ContaService {
 
                 if (conta.getTentativas() <= 0) {
                     System.out.println("Tentativas restantes: " + conta.getTentativas());
+                    conta.subTentativas();
                     return null;
                 }
 
